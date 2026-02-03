@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
+const config = require('config');
+const dbgr = require('debug')('development:mongoose'); // the ('developer:mongoose') is a namespace without the environment variable it will not log anything
 
-mongoose.connect('mongodb://localhost:27017/scathPremiumBagShop', )
+
+mongoose.connect(`${config.get("MONGODB_URI")}/scathPremiumBagShop`)
 .then(() => {
-    console.log('MongoDB connected successfully');
+    dbgr('MongoDB connected successfully buddy');
 })
 .catch((err) => {
-    console.log('MongoDB connection failed', err);
+    dbgr('MongoDB connection failed', err);
 });
