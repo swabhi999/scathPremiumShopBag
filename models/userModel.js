@@ -33,7 +33,6 @@ userSchema =  mongoose.Schema({
         default: [],
     },
     contactNo: Number,
-    isAdmin: Boolean,
     picture: String,
 })
 
