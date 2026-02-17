@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config();
 // to load environment variables from .env file
 // console.log("JWT SECRET:", process.env.TEST);
 const express = require("express");
@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/owners', ownerRouter);
 app.use('/users', userRouter);
 app.use('/products', productRouter);
+app.use('/', indexRouter);
 
 
 app.listen(3000, () => {

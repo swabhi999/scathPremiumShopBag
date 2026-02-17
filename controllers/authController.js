@@ -4,13 +4,13 @@ const { generateToken } = require("../utils/generateToken");
 const { hashedpassword } = require("../utils/hashedPassword");
 
     async function registerUser(req,res) {
-    try {
+     try {
         let { fullname, password, email } = req.body;
         let user = await userModel.findOne({ email });
         if(user) 
             return res.status(400).send("user already exists");
         
-        if(!fullname || !password || !email) 
+      if(!fullname || !password || !email) 
             return res.status(400).send("please fill all the fields")
         
         
@@ -45,13 +45,13 @@ async function loginUser(req, res) {
     // Check if user exists
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(401).send("Invalid credentials");
+      return res.status(401).send("something went wrong");
     }
 
     // Compare password
     const ismatched = await comparePassword(password, user.password);
     if (!ismatched) {
-      return res.status(401).send("Invalid credentials");
+      return res.status(401).send("something went wrong");
     }
 
     // Generate token
@@ -67,3 +67,10 @@ async function loginUser(req, res) {
 }
 
 module.exports.loginUser = loginUser;
+
+
+
+module.exports.logOutUser = (req,res)=>{
+    res.clearCookie("token")
+    res.status(200).redirect("/")
+}   

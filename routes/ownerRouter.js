@@ -3,12 +3,8 @@ const router = require('express')
 const OwnerModel = require('../models/ownerModel');              
 
 
-// Owner Dashboard Route
-router.get('/', (req, res) => {
-    res.send('Owner Dashboard');
-});
-
 console.log(process.env.NODE_ENV);
+
  if(process.env.NODE_ENV === 'development') {
 
 
@@ -31,5 +27,12 @@ console.log(process.env.NODE_ENV);
         res.status(201).send(newOwner);
  })
  }
+
+// Owner Dashboard Route
+router.get('/admin', (req, res) => {
+    res.render('createproducts');
+});
+
+
 
 module.exports = router;
