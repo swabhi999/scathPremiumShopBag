@@ -11,20 +11,20 @@ const mongoose = require('mongoose');
 // text-color
 
 
-productSchema =  mongoose.Schema({
+
+const productSchema = mongoose.Schema({
     name: String,
-    image:Buffer,
-    discountPrice:{
-        type:Number,
-        default:0,
+    image: Buffer, // Stores image as binary data
+    discount: {
+        type: Number,
+        default: 0,
     },
-    price:Number,
+    price: Number,
     bgColor: String,
     textColor: String,
-    image: String,
     panelColor: String,
-   
-})
-product = mongoose.model('product',productSchema);
+});
+
+const product = mongoose.model('product', productSchema);
 
 module.exports = product;

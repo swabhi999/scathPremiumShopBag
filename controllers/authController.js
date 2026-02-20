@@ -45,7 +45,7 @@ async function loginUser(req, res) {
     // Check if user exists
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(401).send("something went wrong");
+      return res.status(401).send("something went wrong1");
     }
 
     // Compare password
@@ -56,10 +56,9 @@ async function loginUser(req, res) {
 
     // Generate token
     const token = generateToken(user);
-
-    res.cookie("token", token)
-
-    return res.status(200).send("Login successful");
+    res.cookie("token", token);
+    // Redirect to shop after successful login
+    return res.redirect('/shop');
 
   } catch (err) {
     return res.status(500).send(err.message);

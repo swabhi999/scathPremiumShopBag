@@ -30,7 +30,8 @@ console.log(process.env.NODE_ENV);
 
 // Owner Dashboard Route
 router.get('/admin', (req, res) => {
-    res.render('createproducts');
+  let success = req.flash('success', 'Welcome to the admin dashboard!');
+    res.render('createproducts',{success});
 });
 
 
